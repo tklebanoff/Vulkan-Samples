@@ -71,6 +71,9 @@ class Subpass
 
 	Subpass &operator=(Subpass &&) = delete;
 
+	/**
+	 * @brief Prepares the shaders and shader variants for a subpass
+	 */
 	virtual void prepare() = 0;
 
 	/**

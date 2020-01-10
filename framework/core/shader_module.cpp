@@ -145,6 +145,14 @@ size_t ShaderVariant::get_id() const
 	return id;
 }
 
+void ShaderVariant::add_definitions(const std::vector<std::string> &definitions)
+{
+	for (auto &definition : definitions)
+	{
+		add_define(definition);
+	}
+}
+
 void ShaderVariant::add_define(const std::string &def)
 {
 	processes.push_back("D" + def);

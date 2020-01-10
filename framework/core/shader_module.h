@@ -88,6 +88,12 @@ class ShaderVariant
 	size_t get_id() const;
 
 	/**
+	 * @brief Add definitions to shader variant
+	 * @param definitions Vector of definitions to add to the variant
+	 */
+	void add_definitions(const std::vector<std::string> &definitions);
+
+	/**
 	 * @brief Adds a define macro to the shader
 	 * @param def String which should go to the right of a define directive
 	 */
