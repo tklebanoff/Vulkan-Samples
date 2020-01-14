@@ -1,5 +1,5 @@
 /* Copyright (c) 2018-2020, Arm Limited and Contributors
- * Copyright (c) 2019, Sascha Willems
+ * Copyright (c) 2020, Sascha Willems
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -42,7 +42,6 @@ VKBP_ENABLE_WARNINGS()
 #include "platform/filesystem.h"
 #include "rendering/render_context.h"
 #include "timer.h"
-#include "utils/graphs.h"
 #include "vulkan_sample.h"
 
 namespace vkb
@@ -847,7 +846,7 @@ void Gui::show_debug_window(DebugInfo &debug_info, const ImVec2 &position)
 
 	if (ImGui::Button("Save Debug Graphs"))
 	{
-		if (utils::debug_graphs(sample.get_render_context(), sample.get_scene()))
+		if (graphs::generate_all(sample.get_render_context(), sample.get_scene()))
 		{
 			message = "Graphs Saved!";
 		}
