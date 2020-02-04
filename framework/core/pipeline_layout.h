@@ -32,7 +32,7 @@ class DescriptorSetLayout;
 class PipelineLayout
 {
   public:
-	PipelineLayout(Device &device, const std::vector<ShaderModule *> &shader_modules, bool use_dynamic_resources);
+	PipelineLayout(Device &device, const std::vector<ShaderModule *> &shader_modules);
 
 	PipelineLayout(const PipelineLayout &) = delete;
 

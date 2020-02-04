@@ -40,9 +40,6 @@ GeometrySubpass::GeometrySubpass(RenderContext &render_context, ShaderSource &&v
 
 void GeometrySubpass::prepare()
 {
-	// By default use dynamic resources
-	use_dynamic_resources = true;
-
 	// Build all shader variance upfront
 	auto &device = render_context.get_device();
 	for (auto &mesh : meshes)
@@ -52,9 +49,6 @@ void GeometrySubpass::prepare()
 			auto &variant     = sub_mesh->get_shader_variant();
 			auto &vert_module = device.get_resource_cache().request_shader_module(VK_SHADER_STAGE_VERTEX_BIT, get_vertex_shader(), variant);
 			auto &frag_module = device.get_resource_cache().request_shader_module(VK_SHADER_STAGE_FRAGMENT_BIT, get_fragment_shader(), variant);
-
-			vert_module.set_resource_dynamic("GlobalUniform");
-			frag_module.set_resource_dynamic("GlobalUniform");
 		}
 	}
 }
@@ -171,9 +165,12 @@ void GeometrySubpass::draw_submesh(CommandBuffer &command_buffer, sg::SubMesh &s
 	auto &vert_shader_module = device.get_resource_cache().request_shader_module(VK_SHADER_STAGE_VERTEX_BIT, get_vertex_shader(), sub_mesh.get_shader_variant());
 	auto &frag_shader_module = device.get_resource_cache().request_shader_module(VK_SHADER_STAGE_FRAGMENT_BIT, get_fragment_shader(), sub_mesh.get_shader_variant());
 
+	vert_shader_module.set_resource_dynamic("GlobalUniform");
+	frag_shader_module.set_resource_dynamic("GlobalUniform");
+
 	std::vector<ShaderModule *> shader_modules{&vert_shader_module, &frag_shader_module};
 
-	auto &pipeline_layout = device.get_resource_cache().request_pipeline_layout(shader_modules, use_dynamic_resources);
+	auto &pipeline_layout = device.get_resource_cache().request_pipeline_layout(shader_modules);
 
 	command_buffer.bind_pipeline_layout(pipeline_layout);
 

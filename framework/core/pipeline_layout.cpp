@@ -24,14 +24,14 @@
 
 namespace vkb
 {
-PipelineLayout::PipelineLayout(Device &device, const std::vector<ShaderModule *> &shader_modules, bool use_dynamic_resources) :
+PipelineLayout::PipelineLayout(Device &device, const std::vector<ShaderModule *> &shader_modules) :
     device{device},
     shader_program{shader_modules}
 {
 	// Create a descriptor set layout for each shader set in the shader program
 	for (auto &shader_set_it : shader_program.get_shader_sets())
 	{
-		descriptor_set_layouts.emplace(shader_set_it.first, &device.get_resource_cache().request_descriptor_set_layout(shader_set_it.second, use_dynamic_resources));
+		descriptor_set_layouts.emplace(shader_set_it.first, &device.get_resource_cache().request_descriptor_set_layout(shader_set_it.second));
 	}
 
 	// Collect all the descriptor set layout handles

@@ -40,7 +40,7 @@ class DescriptorSetLayout
 	 * @param resource_set A grouping of shader resources belonging to the same set
 	 * @param use_dynamic_resources Whether to set the resources to dynamic (where applicable)
 	 */
-	DescriptorSetLayout(Device &device, const std::vector<ShaderResource> &resource_set, bool use_dynamic_resources);
+	DescriptorSetLayout(Device &device, const std::vector<ShaderResource> &resource_set);
 
 	DescriptorSetLayout(const DescriptorSetLayout &) = delete;
 

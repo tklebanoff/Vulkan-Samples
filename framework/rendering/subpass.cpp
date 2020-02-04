@@ -90,11 +90,6 @@ void Subpass::set_output_attachments(std::vector<uint32_t> output)
 	output_attachments = output;
 }
 
-void Subpass::set_use_dynamic_resources(bool b)
-{
-	use_dynamic_resources = b;
-}
-
 void Subpass::add_definitions(ShaderVariant &variant, const std::vector<std::string> &definitions)
 {
 	for (auto &definition : definitions)
