@@ -43,7 +43,7 @@ ImageView::ImageView(Image &img, VkImageViewType view_type, VkFormat format) :
 	}
 	else if (is_depth_stencil_format(format))
 	{
-		subresource_range.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT | VK_IMAGE_ASPECT_STENCIL_BIT;
+		subresource_range.aspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
 	}
 	else
 	{
