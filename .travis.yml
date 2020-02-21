@@ -1,6 +1,10 @@
 language: shell
 os: linux
 
+build:
+  only:
+    - branch
+
 stages:
   - Check
   - Build
